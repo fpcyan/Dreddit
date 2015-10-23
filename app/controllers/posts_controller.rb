@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :ensure_only_authors_can_edit_posts, only: [:edit, :update]
 
   def show
-    @post = Post.includes(:author, :subs).find(params[:id])
+    @post = Post.includes(:author).find(params[:id])
     render :show
   end
 
@@ -17,12 +17,12 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params.merge(author_id: current_user.id))
-    debugger
+    # debugger
     if @post.save
       redirect_to post_url(@post)
     else
       flash.now[:errors] = @post.errors.full_messages
-      redirect_to sub_url(post_params[:sub_id][0])
+      redirect_to sub_url(post_params[:sub_id])
     end
   end
 
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:title, :url, :content, :sub_id => [])
+      params.require(:post).permit(:title, :url, :content, :sub_ids => [])
     end
 
     def ensure_only_authors_can_edit_posts

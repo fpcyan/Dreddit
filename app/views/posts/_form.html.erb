@@ -25,7 +25,7 @@
       <%= subdreddit.title %>
       <input
         type="checkbox"
-        name="post[sub_id][]"
+        name="post[sub_ids][]"
         value="<%= subdreddit.id %>"
         <%="checked" if ( sub.title == subdreddit.title || post.subs.include?(subdreddit.title) )%>>
       </input>

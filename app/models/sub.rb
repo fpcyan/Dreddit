@@ -8,9 +8,15 @@ class Sub < ActiveRecord::Base
     foreign_key: :moderator_id
   )
 
-  has_many(
-    :posts,
+  has_many :posts, :through => :postsubs, source: :post
     class_name: "Post",
+    foreign_key: :sub_id
+  )
+
+  has_many(
+    :post_subs,
+    inverse_of: :sub,
+    class_name: "PostSub",
     foreign_key: :sub_id
   )
 

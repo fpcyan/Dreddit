@@ -20,10 +20,19 @@
     value="<%= value %>">
   </input>
 
-  <input
-    type="hidden"
-    name="sub[title]"
-    value="<%= sub.title %>">
+  <% @subs.each do |subdreddit| %>
+    <label>
+      <%= subdreddit.title %>
+      <input
+        type="checkbox"
+        name="post[sub_id][]"
+        value="<%= subdreddit.id %>"
+        <%="checked" if ( sub.title == subdreddit.title || post.subs.include?(subdreddit.title) )%>>
+      </input>
+    </label>
+    <br>
+  <% end %>
+
 
   <% unless post.persisted? %>
     <label>

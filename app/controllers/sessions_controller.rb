@@ -19,7 +19,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     sign_out!
 
     redirect_to new_session_url

@@ -1,0 +1,45 @@
+<% if sub.persisted? %>
+  <% value, action = "PATCH", sub_url(sub.id) %>
+<% else %>
+  <% value, action = "POST", subs_url %>
+<% end %>
+
+<form action="<%= action %>" method="POST">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  </input>
+
+  <input
+    type="hidden"
+    name="_method"
+    value="<%= value %>">
+  </input>
+
+
+
+  <label>
+    Title:
+    <input
+      type="text"
+      name="sub[title]"
+      placeholder="cats"
+      value="<%= sub.title %>">
+    </input>
+  </label>
+  <br>
+  <br>
+
+  <label>
+    Description
+    <textarea
+      name="sub[description]"
+      placeholder="Give a short description about your subdreddit!"><%= sub.description %></textarea>
+  </label>
+  <br>
+  <br>
+
+  <button>Submit</button>
+
+</form>

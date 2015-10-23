@@ -1,0 +1,13 @@
+<h1>List of Subs</h1>
+
+<ul>
+  <% @subs.each do |sub| %>
+    <a href="<%= sub_url(sub) %>">
+      <p><%= sub.title %> -- <%= sub.description %>
+      </p>
+    </a>
+  <% end %>
+</ul>
+<br>
+
+<a href="<%= new_user_sub_url(current_user) %>">Create a SubDreddit</a>

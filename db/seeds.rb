@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# User.destroy_all
+# Subs.destroy_all
+# Posts.destroy_all
+
+# 5.times do |i|
+#   Post.create!(title:"#{i.ordinalize} post", content:"#{i}", sub_id: 1, author_id: 8)
+# end

@@ -11,10 +11,13 @@
   <ul>
     <% @sub.posts.to_a.sort_by! { |post| post.created_at }.reverse.each do |post| %>
       <li>
-        <a href="<%= post.url %>">
-          <%= post.title %></a> -- Created by: <%= post.author.username %>
+        <a href="<%= post.url.empty? ? post_url(post) : post.url %>">
+          <%= post.title %></a> --
+            <a href="<%= post_url(post) %>">discussion</a> -- Created by: <%= post.author.username %>
       </li>
 
     <% end %>
   </ul>
 </label>
+
+<a href="<%= new_sub_post_url(@sub.id) %>">Add New Post</a>

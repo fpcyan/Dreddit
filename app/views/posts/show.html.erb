@@ -1,0 +1,12 @@
+<h1> <a href="<%= @post.url %>"> <%= @post.title %> </a> </h1>
+
+<% if @post.author_id == current_user.id %>
+  <a href="<%= edit_post_url(@post) %>">
+    Edit Post
+  </a>
+<% end %>
+
+<p><%= @post.content %></p>
+<br>
+<br>
+<a href="<%= sub_url(@post.sub_id) %>"> Return to sub </a>

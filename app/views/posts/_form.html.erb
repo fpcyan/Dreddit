@@ -1,0 +1,60 @@
+<% if post.persisted? %>
+  <% action, value = post_url, "PATCH" %>
+<% else %>
+  <% action, value = posts_url, "POST"  %>
+<% end %>
+
+
+
+<form action="<%= action %>" method="POST">
+
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  </input>
+
+  <input
+    type="hidden"
+    name="_method"
+    value="<%= value %>">
+  </input>
+
+  <input
+    type="hidden"
+    name="sub[title]"
+    value="<%= sub.title %>">
+
+  <% unless post.persisted? %>
+    <label>
+      Title:
+      <input
+        type="text"
+        name="post[title]"
+        placeholder="Check out this cool cat.">
+      </input>
+    </label>
+    <br>
+
+    <label>
+      URL (optional):
+      <input
+        type="text"
+        name="post[url]"
+        placeholder="http://lmgtfy.com/">
+      </input>
+    </label>
+    <br>
+    <br>
+  <% end %>
+
+  <label>
+    Content
+    <textarea
+      name="post[content]"
+      placeholder="Add your thoughts..."><%= post.content %></textarea>
+  <label>
+
+  <button>Submit</button>
+
+</form>
